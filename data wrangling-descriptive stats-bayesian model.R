@@ -182,17 +182,7 @@ fit2 <- brm(
   control = list(adapt_delta = 0.9999, max_treedepth = 15)
 )
 
-# Check results
-summary(fit)
-plot(fit)
 
-hypothesis(fit, "`bsp_melogmasslog_mass_se` = 0.66")
-
-posterior <- as_draws_df(fit)
-mean(posterior$bsp_melogmasslog_mass_se > 0.75)
-
-pairs(fit)
-variables(fit)
 
 #compare to 0.75 scaling law
 
@@ -202,6 +192,10 @@ slope <- post$bsp_melogmasslog_mass_se
 mean(slope > 0.75)
 quantile(slope - 0.75, c(0.025, 0.975))
 mean(abs(slope - 0.75) < 0.05)
+
+mean(slope > 0.55)
+quantile(slope - 0.55, c(0.025, 0.975))
+mean(abs(slope - 0.55) < 0.05)
 
 #plot
 
